@@ -26,6 +26,18 @@ users:
     workphone: "(555) 555-5555"
     homephone: "(555) 555-5551"
     manage_vimrc: False
+    
+    # vimrc config
+    vimrc:
+      config:
+        number:
+        t_Co: 256
+        syntax: on
+        tabstop: 2
+        expandtab:
+        colorscheme: adventurous
+        mouse-: a        
+
     manage_bashrc: False
     manage_profile: False
     expire: 16426

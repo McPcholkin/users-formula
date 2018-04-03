@@ -2,7 +2,7 @@
 users
 =====
 
-Formula to configure users via pillar.
+Formula to configure users via pillar, with vimrc parameters in pillar.
 
 
 .. note::

@@ -1,0 +1,21 @@
+{%- set config = salt['pillar.get']('users:'~ username ~':vimrc:config', {}) -%}
+" This file managed by salt
+
+{% macro set_config(config, prefix='set ') -%}
+{% for parameter in config | sort(reverse=True) -%}
+{% set value = config.get(parameter) -%}
+{%- if value is mapping -%}
+{{ set_config(value, prefix=prefix+parameter+' ') }}
+{%- elif value is sequence and value is not string -%}
+{% for item in value -%}
+{{ prefix }}{{ parameter }}={{ item }}
+{% endfor -%}
+{% elif parameter == 'colorscheme' -%}
+{{ parameter }} {{ value }}
+{% elif value is not none -%}
+{{ prefix }}{{ parameter }}={{ value }}
+{% endif -%}
+{% endfor -%}
+{% endmacro -%}
+
+{{ set_config(config) }}
