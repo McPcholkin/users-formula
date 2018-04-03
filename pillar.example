@@ -32,7 +32,7 @@ users:
       config:
         number:
         t_Co: 256
-        syntax: on
+        syntax: 'on'
         tabstop: 2
         expandtab:
         colorscheme: adventurous

@@ -1,4 +1,5 @@
 {%- set config = salt['pillar.get']('users:'~ username ~':vimrc:config', {}) -%}
+{%- set no_set_param = ['colorscheme', 'syntax'] -%}
 " This file managed by salt
 
 {% macro set_config(config, prefix='set ') -%}
@@ -10,7 +11,7 @@
 {% for item in value -%}
 {{ prefix }}{{ parameter }}={{ item }}
 {% endfor -%}
-{% elif parameter == 'colorscheme' -%}
+{% elif parameter in no_set_param -%}
 {{ parameter }} {{ value }}
 {% elif value is not none -%}
 {{ prefix }}{{ parameter }}={{ value }}
