@@ -25,8 +25,8 @@ users:
     roomnumber: "A-1"
     workphone: "(555) 555-5555"
     homephone: "(555) 555-5551"
-    manage_vimrc: False
     
+    manage_vimrc: False
     # vimrc config
     vimrc:
       config:
@@ -37,6 +37,33 @@ users:
         expandtab:
         colorscheme: adventurous
         mouse-: a        
+    manage_mc_ini: False
+    manage_mc_panels: False
+    # mc config
+    mc:
+      ini_config:
+        midnight_commander:
+          editor_tab_spacing: '4'
+          skin: 'default'
+        layout:
+          left_panel_size: '47'
+        panels:
+          navigate_with_arrows: 'true'
+      panels_config:
+        left_panel:
+          sort_order: 'name'
+          list_mode: 'user'
+          brief_cols: '2'
+          user_format: 'half type name | size:4 | mtime'
+        right_panel:
+          sort_order: 'name'
+          list_mode: 'user'
+          brief_cols: '2'
+          user_format: 'half type name | size:4 | mtime'
+        dirs:
+          current_is_left: 'true'
+          other_dir: '~/'
+
 
     manage_bashrc: False
     manage_profile: False

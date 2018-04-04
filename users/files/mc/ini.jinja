@@ -1,0 +1,33 @@
+{% import_yaml 'mc/files/defaults/ini.yaml' as mc_ini_defaults -%}
+{% set mc_ini_global_values = salt['pillar.get'](
+    'mc:ini_config',
+    default=mc_ini_defaults,
+    merge=True)
+-%}
+{% set mc_ini_final_values = salt['pillar.get'](
+    'users:'~ username ~':mc:ini_config', 
+    default=mc_ini_global_values, 
+    merge=True) 
+-%}
+
+{%- macro set_config(config, prefix='') -%}
+{% for parameter in config -%}
+{% set value = config.get(parameter) -%}
+{% if value is not none -%}
+{{ prefix }}{{ parameter }}={{ value }}
+{% endif -%}
+{% endfor -%}
+{% endmacro -%}
+
+[Midnight-Commander]
+{{ set_config(mc_ini_final_values.midnight_commander) }}
+[Layout]
+{{ set_config(mc_ini_final_values.layout) }}
+[Misc]
+{{ set_config(mc_ini_final_values.misc) }}
+[Colors]
+{{ set_config(mc_ini_final_values.colors) }}
+[Panels]
+{{ set_config(mc_ini_final_values.panels) }}
+[Panelize]
+{{ set_config(mc_ini_final_values.panelize) }}

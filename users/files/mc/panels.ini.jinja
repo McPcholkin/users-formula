@@ -1,0 +1,28 @@
+{% import_yaml 'mc/files/defaults/panels.yaml' as mc_panels_defaults -%}
+{% set mc_panels_global_values = salt['pillar.get'](
+    'mc:panels_config',
+    default=mc_panels_defaults,
+    merge=True)
+-%}
+{% set mc_panels_final_values = salt['pillar.get'](
+    'users:'~ username ~':mc:panels_config',
+    default=mc_panels_global_values,
+    merge=True)
+-%}
+
+
+{%- macro set_config(config, prefix='') -%}
+{% for parameter in config | sort -%}
+{% set value = config.get(parameter) -%}
+{% if value is not none -%}
+{{ prefix }}{{ parameter }}={{ value }}
+{% endif -%}
+{% endfor -%}
+{% endmacro -%}
+
+[New Left Panel]
+{{ set_config(mc_panels_final_values.left_panel) }}
+[New Right Panel]
+{{ set_config(mc_panels_final_values.right_panel) }}
+[Dirs]
+{{ set_config(mc_panels_final_values.dirs) }}

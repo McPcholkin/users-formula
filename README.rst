@@ -47,6 +47,12 @@ Ensures the vimrc file exists in the users home directory. Sets 'manage_vimrc:
 True' in pillar per user. Defaults to False.
 This depends on the vim-formula to be installed.
 
+``users.mc``
+------------
+
+Ensures the ~/.config/mc/ini and ~/.config/mc/panels.ini exists in the users home directory. Sets 'manage_mc_ini: True' and 'manage_mc_panels: True' in pillar per user. Defaults to False.
+This depends on the mc-formula to be installed.
+
 ``users.user_files``
 ---------------
 
