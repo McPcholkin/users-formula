@@ -25,7 +25,7 @@ users_{{ name }}_user_vimrc:
     - template: jinja
     - source:
       - salt://users/files/vimrc/{{ name }}/vimrc
-      - salt://users/vimrc.jinja
+      - salt://users/files/vimrc/vimrc.jinja
     - defaults:
       username: {{ name }}
 {% endif %}
